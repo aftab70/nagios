@@ -1,1 +1,78 @@
-sdf
+Nagios understands the following exit codes:
+
+0 - Service is OK.
+1 - Service has a WARNING.
+2 - Service is in a CRITICAL status.
+3 - Service status is UNKNOWN.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+countWarnings=$(/usr/local/nagios/bin/nagiostats | grep "Ok/Warn/Unk/Crit:" | sed 's/[[:space:]]//g' | cut -d"/" -f5)
+
+if (($countWarnings<=5)); then
+                echo "OK - $countWarnings services in Warning state"
+                exit 0
+        elif ((6<=$countWarnings && $countWarnings<=30)); then
+				# This case makes no sense because it only adds one warning.
+				# It is just to make an example on all possible exits.
+                echo "WARNING - $countWarnings services in Warning state"
+                exit 1
+        elif ((30<=$countWarnings)); then
+                echo "CRITICAL - $countWarnings services in Warning state"
+                exit 2
+        else
+                echo "UNKNOWN - $countWarnings"
+                exit 3
+fi
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+sudo chmod +x /usr/local/nagios/libexec/check_warnings.sh
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Set a New Checking Command and Service
+This step will be the same with your own plugins, and if you download a third-party plugin from the internet as well.
+
+First you should define a command in the commands.cfg file. This file location depends on the configuration you've done, in my case it is in /usr/local/nagios/etc/objects/commands.cfg.
+
+So I will add at the end of the file the following block:
+
+# Custom plugins commands...
+define command{
+	command_name check_warnings
+	command_line $USER1$/check_warnings.sh
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Edit the /usr/local/nagios/etc/objects/localhost.cfg file and add the following block:
+
+# Example - Check current warnings...
+define service{
+	use local-service
+	host_name localhost
+	service_description Nagios Server Warnings
+	check_command check_warnings
+}
+
+------------------------------------------------------------------------------------------------------------------------------
+
+sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+------------------------------------------------------------------------------------------------------------------------------
+
+systemctl restart nagios
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
