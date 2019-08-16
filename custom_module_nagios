@@ -5,6 +5,21 @@ Nagios understands the following exit codes:
 2 - Service is in a CRITICAL status.
 3 - Service status is UNKNOWN.
 
+Ping bash script 
+
+
+#!/bin/bash
+
+ping -c1 localhost > /dev/null
+if [ $? -eq 0 ]
+  then 
+    echo "OK -services in Warning state" 
+    exit 0
+  else
+    echo “Server is not running”
+    exit 3
+fi
+
 --------------------------------------------------------------------------------------------------------------------------------
 
 #!/bin/bash
