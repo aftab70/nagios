@@ -33,11 +33,4 @@ systemctl enable nagios
 systemctl start nagios
 
 echo "nagios Core installation is successfull"
-
-
-
-
-
-
-
-
+echo "############## Author - Aftab Ali ######################"
