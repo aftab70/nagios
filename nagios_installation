@@ -30,6 +30,7 @@ make
 make install
 /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
 systemctl enable nagios
+apt -y install nagios-nrpe-plugin
 systemctl start nagios
 
 echo "nagios Core installation is successfull"
