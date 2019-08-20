@@ -2,8 +2,8 @@
 set -e 
 set -x
 
-apt-get update && apt-get install build-essential libgd2-xpm-dev openssl libssl-dev unzip curl -y
-useradd -s /usr/sbin/nologin shipper
+apt-get update && apt-get install build-essential openssl libssl-dev unzip curl -y
+useradd -s /bin/false -g shipper -d /var/lib/nagios shipper
 cd ~ && curl -L -O http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
 tar zxf nagios-plugins-*.tar.gz && cd nagios-plugins-*
 ./configure --with-nagios-user=shipper --with-nagios-group=shipper --with-openssl
