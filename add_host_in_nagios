@@ -2,8 +2,9 @@
 set -e 
 set -x
 
-apt-get update && apt-get install build-essential openssl libssl-dev unzip curl -y
-useradd -s /bin/false -g shipper -d /var/lib/nagios shipper
+apt-get update  
+apt-get install build-essential libgd-dev* openssl libssl-dev unzip curl -y
+useradd -s /bin/false -M shipper
 cd ~ && curl -L -O http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
 tar zxf nagios-plugins-*.tar.gz && cd nagios-plugins-*
 ./configure --with-nagios-user=shipper --with-nagios-group=shipper --with-openssl
@@ -11,7 +12,7 @@ make
 make install
 cd ~ && curl -L -O https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-3.2.1/nrpe-3.2.1.tar.gz
 tar zxf nrpe-*.tar.gz && cd nrpe-*
-./configure --enable-command-args --with-nagios-user=shipper --with-nagios-group=shipper --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu
+./configure --enable-command-args --with-nagios-user=shipper --with-nagios-group=shipper --with-nrpe-group=shipper --with-nrpe-user=shipper --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu
 make all
 make install
 make install-config
