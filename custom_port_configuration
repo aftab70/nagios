@@ -1,0 +1,36 @@
+# Now need to edit and save the given code for custom port of nrpe 
+# On your Nagios server you need to edit the following cfg file
+
+###############################################################################################################################
+
+vim /usr/local/nagios/etc/objects/commands.cfg
+
+# .check_nrpe. command definition
+define command{
+command_name check_nrpe
+command_line /usr/lib/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -t 30 -c $ARG1$ -p $_HOSTTCPORT$
+}
+
+
+###############################################################################################################################
+
+Step 2 :- After that you need to edit and add port param for port number, example is give below :--
+
+edit file your env, you need to add _tcport param in define host.
+
+###############################################################################################################################
+
+vim /usr/local/nagios/etc/servers/227.cfg
+
+
+define host{
+
+            use                     linux-server
+            host_name               HOST_NAME
+            alias                   HOST_NAME
+            address                 HOST_IP_ADDRESSS
+            _tcport                 5676
+}
+
+
+###############################################################################################################################
