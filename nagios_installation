@@ -25,7 +25,7 @@ systemctl restart apache2
 cd /tmp && wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
 tar -zxvf /tmp/nagios-plugins-2.2.1.tar.gz
 cd /tmp/nagios-plugins-2.2.1/
-./configure --with-nagios-user=nagios-admin --with-nagios-group=nagios-admin
+./configure --with-nagios-user=secure-nagios --with-nagios-group=secure-nagios
 make
 make install
 /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
