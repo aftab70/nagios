@@ -4,14 +4,14 @@ set -e
 apt-get update 
 apt-get -y install build-essential apache2 php openssl perl make php-gd libgd-dev libapache2-mod-php libperl-dev libssl-dev daemon wget apache2-utils unzip
 
-useradd nagios
-groupadd nagcmd
-usermod -a -G nagcmd nagios
-usermod -a -G nagcmd www-data
+useradd nagios-admin
+groupadd nagcmd-admin
+usermod -a -G nagcmd-admin nagios-admin
+usermod -a -G nagcmd-admin www-data
 cd /tmp && wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.3.tar.gz
 tar -zxvf /tmp/nagios-4.4.3.tar.gz
 cd /tmp/nagios-4.4.3/
-./configure --with-nagios-group=nagios --with-command-group=nagcmd --with-httpd_conf=/etc/apache2/sites-enabled/
+./configure --with-nagios-group=nagios-admin --with-command-group=nagcmd-admin --with-httpd_conf=/etc/apache2/sites-enabled/
 make all
 make install
 make install-init
@@ -25,7 +25,7 @@ systemctl restart apache2
 cd /tmp && wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
 tar -zxvf /tmp/nagios-plugins-2.2.1.tar.gz
 cd /tmp/nagios-plugins-2.2.1/
-./configure --with-nagios-user=nagios --with-nagios-group=nagios
+./configure --with-nagios-user=nagios-admin --with-nagios-group=nagios-admin
 make
 make install
 /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
