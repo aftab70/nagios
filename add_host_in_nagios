@@ -4,7 +4,7 @@ set -x
 
 apt-get update  
 apt-get install build-essential libgd-dev* openssl libssl-dev unzip curl -y
-useradd -s /bin/false -M shipper
+useradd -s /bin/false shipper
 cd ~ && curl -L -O http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
 tar zxf nagios-plugins-*.tar.gz && cd nagios-plugins-*
 ./configure --with-nagios-user=shipper --with-nagios-group=shipper --with-openssl
