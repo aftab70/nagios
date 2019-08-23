@@ -4,7 +4,7 @@ set -e
 apt-get update 
 apt-get -y install build-essential apache2 php openssl perl make php-gd libgd-dev libapache2-mod-php libperl-dev libssl-dev daemon wget apache2-utils unzip
 
-useradd nagios-admin
+useradd -s /bin/false -M nagios-admin
 groupadd nagcmd-admin
 usermod -a -G nagcmd-admin nagios-admin
 usermod -a -G nagcmd-admin www-data
