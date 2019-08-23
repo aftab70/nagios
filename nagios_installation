@@ -19,7 +19,7 @@ make install-config
 make install-commandmode
 make install-webconf
 
-htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+htpasswd -c /usr/local/nagios/etc/htpasswd.users secure-nagios-admin
 a2enmod cgi
 systemctl restart apache2
 cd /tmp && wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
@@ -34,4 +34,6 @@ apt -y install nagios-nrpe-plugin
 systemctl start nagios
 
 echo "nagios Core installation is successfull"
+echo "Open your browser using http://YOUR_IP/nagios "
+echo "Your username will be secure-nagios-admin "
 echo "############## Author - Aftab Ali ######################"
