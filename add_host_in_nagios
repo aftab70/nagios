@@ -1,3 +1,4 @@
+
 #!/bin/bash
 set -e 
 set -x
@@ -11,7 +12,7 @@ make
 make install
 cd ~ && curl -L -O https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-3.2.1/nrpe-3.2.1.tar.gz
 tar zxf nrpe-*.tar.gz && cd nrpe-*
-./configure --enable-command-args --with-nagios-user=shipper --with-nagios-group=shipper --with-nrpe-group=shipper --with-nrpe-user=shipper --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu
+./configure --enable-command-args  --with-nrpe-port=5676 --with-nagios-user=shipper --with-nagios-group=shipper --with-nrpe-group=shipper --with-nrpe-user=shipper --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu
 make all
 make install
 make install-config
