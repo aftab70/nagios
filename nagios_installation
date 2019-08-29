@@ -19,7 +19,7 @@ make install-config
 make install-commandmode
 make install-webconf
 
-htpasswd -c /usr/local/nagios/etc/htpasswd.users secure-nagios-admin
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
 a2enmod cgi
 systemctl restart apache2
 cd /tmp && wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
