@@ -128,8 +128,20 @@ systemctl restart nagios
 
 # To verify attemps count you can check the nagios dashboards with services attemps.
 
-##############################---------email-notification-reminder-cycle-nagios-server-----------##########################################################################################################
+############################-----------------check-interval-time-of-the-service ---------###########################################
+# by default nagios check service interval is 5 minutes, in case if you want to changes that you need to edit 
+# save the new value of the param,line number is 195
 
+vim /usr/local/nagios/etc/objects/templates.cfg
+
+check_interval                  5                       ; Check the service every 5 minutes under normal conditions
+
+Save and exit to get effects you need to restart the nagios service using following the commands.
+
+systemctl restart nagios
+
+##############################---------email-notification-reminder-cycle-nagios-server-----------##########################################################################################################
+# Do not set notification interval time lessthen check interval,reminder email should same or grater than of check_interval time.
 # by default Re-notify about service problems every hour in 60 minutes, if you want to changes that
 # SO you need to change the notification_interval time by editing the following templates.cfg file.
 # make changes in line number 180
@@ -141,6 +153,8 @@ notification_interval           99999                      ; Re-notify about ser
 #Save and exit to get effect you need to restart the nagios service by following the commands.
 
 systemctl restart nagios
+
+############################################################################################################################################################################################################
 
 
 
