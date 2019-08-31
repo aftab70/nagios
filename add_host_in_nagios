@@ -152,3 +152,12 @@ define service{
 ###################################################################################################################
 
 save and exit...
+
+# Verify nagios configuration by following the commads.
+
+/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+systemctl restart nagios
+systemctl status nagios
+
+
