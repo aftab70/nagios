@@ -37,6 +37,16 @@ save and exit
 systemctl restart nrpe.service
 systemctl status nrpe.service
 
+# Need to verify some checks by following the commands.
+
+execute - /usr/lib/nagios/plugins/check_procs -w 150 -c 200
+
+You should get output:-- PROCS WARNING: 190 processes | procs=190;150;200;0;
+
+execute  - /usr/lib/nagios/plugins/check_procs -w 200 -c 250
+
+You should get output:-- PROCS OK: 189 processes | procs=189;200;250;0;
+
 # Your client side nagios host configuration is completed..
 
 ############################################ Server-side nagios configuration ##########################################
