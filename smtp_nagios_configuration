@@ -101,7 +101,7 @@ Additional Info:
 
 WARNING - load average: 0.84, 3.09, 3.96
 
-##################################################################################################################################################
+###############################---------------disable Flap Detection--------------##################################################################################################
 
 # After that you need to disable Flap Detection by chaging the following file value like this :--
 # You need to set 0 for disable Flap Detection on line number 169
@@ -112,11 +112,23 @@ vim /usr/local/nagios/etc/objects/templates.cfg
 
 systemctl restart nagios
 
-#############################-------Service--Attempts--count--configuration-------##############################################################################################
+################################-------Service--Attempts--count--configuration-------##############################################################################################
 
 # How configure service attemp count - HARD state by default nagios apply 4 attemps to send a notification email to admin,
 # here we configre with 2 attemps check and getting warning , critical, ubnknow status nagios will send notification with in 2 attemps.
+# You need to open your templates.cfg and change value on 4 to 2 on line number 194. 
+ 
+vim /usr/local/nagios/etc/objects/templates.cfg
 
+max_check_attempts              2 
+
+# Save and exit to get effects you need to restart the nagios service by using given commands.
+
+systemctl restart nagios
+
+# To verify attemps count you can check the nagios dashboards with services attemps.
+
+#######################################################################################################################################################################################
 
 
 
