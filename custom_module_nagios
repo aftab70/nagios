@@ -5,6 +5,8 @@ Nagios understands the following exit codes:
 2 - Service is in a CRITICAL status.
 3 - Service status is UNKNOWN.
 
+############################################### nagios-client side configuration ##############################################################
+
 # Step 1:- Login to your nagios client machine as root user, and locate the commands diretory in my case cmd path is 
 # /usr/local/nagios/libexec/ in this path we will create our custom bash script to check services.
 
