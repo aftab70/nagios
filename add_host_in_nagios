@@ -78,18 +78,77 @@ command_line /usr/lib/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -t 30 -c $ARG1$
 
 save and exit here...
 
+# Now need to create nagios-client configration cfg file under /usr/local/nagios/etc/servers/
+# like your_host.cfg 
+
+vim /usr/local/nagios/etc/servers/your_host.cfg
+
+#  and add the following services like this :--
 
 
+define host{
+                           
+            use                     linux-server            
+            host_name               YOUR_HOST_NAME            
+            alias                   YOUR_HOST_NAME            
+            address                 IP_ADDRESS_HERE
+            _tcport                 5676
+                                    
+}                                   
+                                    
+define hostgroup{                   
+                                    
+            hostgroup_name          linux-server            
+            alias                   Linux Servers            
+            members                 YOUR_HOST_NAME
+}                                   
+                                    
+define service{                     
+                                    
+            use                     local-service            
+            host_name               YOUR_HOST_NAME            
+            service_description     SWAP Uasge            
+            check_command           check_nrpe!check_swap                          
+                                    
+}                                   
+                                    
+define service{                     
+                                    
+            use                     local-service            
+            host_name               YOUR_HOST_NAME            
+            service_description     Root / Partition            
+            check_command           check_nrpe!check_root                          
+                                    
+}                                   
+                                    
+define service{                     
+                                    
+            use                     local-service            
+            host_name               YOUR_HOST_NAME            
+            service_description     Current Users            
+            check_command           check_nrpe!check_users                         
+                                    
+}                                   
+                                    
+define service{                     
+                                    
+            use                     local-service            
+            host_name               YOUR_HOST_NAME            
+            service_description     Total Processes            
+            check_command           check_nrpe!check_total_procs                   
+                                    
+}                                   
+                                    
+define service{                     
+                                    
+            use                     local-service            
+            host_name               YOUR_HOST_NAME            
+            service_description     Current Load            
+            check_command           check_nrpe!check_load
+
+}
 
 
+###################################################################################################################
 
-
-
-
-
-
-
-
-
-
-
+save and exit...
