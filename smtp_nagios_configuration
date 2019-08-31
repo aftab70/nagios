@@ -53,7 +53,7 @@ define command {
  
  # As you can the default nagios is using sendmail bin path, We need to replace with mail bin path which is /usr/bin/mail like this.
  
- # Replacing sendmail with main bin path
+ # Replacing sendmail with mail bin path 
  #######################################################################################################################################################################################################################################################################################################################################################################################################
 
 define command {
