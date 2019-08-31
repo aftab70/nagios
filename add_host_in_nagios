@@ -1,4 +1,6 @@
 
+########################## Client site installation and configration of nrpe & nagios-plugin ########################
+
 #!/bin/bash
 set -e 
 set -x
@@ -20,3 +22,27 @@ make install-init
 systemctl enable nrpe.service
 systemctl start nrpe.service
 systemctl status nrpe.service
+
+# if all good going, After that you need to add Nagios server IP address in nrpe.cfg file,
+# Which file is located in /usr/local/nagios/etc/nrpe.cfg
+
+vim /usr/local/nagios/etc/nrpe.cfg
+
+# find the allowed_hosts=127.0.0.1,::1,YOUR_NAGIOS_SERVER_IP_HERE
+
+save and exit
+
+systemctl restart nrpe.service
+systemctl status nrpe.service
+
+# Your client side nagios host configuration is completed..
+
+############################################ Server-side nagios configuration ######################################
+
+
+
+
+
+
+
+
