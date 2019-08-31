@@ -83,7 +83,7 @@ click any service name like Current Load
 Click on Send custom service notification right corner
 Chek your email inbox and spam box, You should recived the custom email notification from Nagios, Like this :--
 
-#####################################################################################################################################
+###############################################-----CUSTOM Service Alert-Sample-----###########################################################################
 
 ** CUSTOM Service Alert: localhost/Current Load is WARNING **
 ***** Nagios *****
@@ -104,5 +104,12 @@ WARNING - load average: 0.84, 3.09, 3.96
 ##################################################################################################################################################
 
 # After that you need to disable Flap Detection by chaging the following file value like this :--
+# You need to set 0 for disable Flap Detection on line number 169
+
+vim /usr/local/nagios/etc/objects/templates.cfg
+
+# Get effect you need to restart the nagios service by following the commands.
+
+systemctl restart nagios
 
 
