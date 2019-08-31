@@ -51,6 +51,41 @@ You should get output:-- PROCS OK: 189 processes | procs=189;200;250;0;
 
 ############################################ Server-side nagios configuration ##########################################
 
+# Login to your nagios-server with root privileges and edit the nagios main config file
+# located in /usr/local/nagios/etc/nagios.cfg and add the nagios-client server directory or uncomment it.
+
+vim /usr/local/nagios/etc/nagios.cfg
+
+#uncommet the following lines 
+
+cfg_dir=/usr/local/nagios/etc/servers
+
+#save and exit & create the directory by following the commads.
+
+mkdir /usr/local/nagios/etc/servers
+
+# After that you need to confgure nagios nrpe commads to check nagios client.
+
+vim /usr/local/nagios/etc/objects/commands.cfg
+
+# Now add the following commads to check nrpe-client.
+
+# .check_nrpe. command definition
+define command{
+command_name check_nrpe
+command_line /usr/lib/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -t 30 -c $ARG1$ -p $_HOSTTCPORT$
+}
+
+save and exit here...
+
+
+
+
+
+
+
+
+
 
 
 
