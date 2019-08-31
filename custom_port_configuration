@@ -20,7 +20,7 @@ edit file your env, you need to add _tcport param in define host.
 
 ###############################################################################################################################
 
-vim /usr/local/nagios/etc/servers/227.cfg
+vim /usr/local/nagios/etc/servers/your_machine.cfg
 
 
 define host{
