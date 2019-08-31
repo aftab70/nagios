@@ -39,7 +39,7 @@ systemctl status nrpe.service
 
 # Your client side nagios host configuration is completed..
 
-############################################ Server-side nagios configuration ######################################
+############################################ Server-side nagios configuration ##########################################
 
 
 
