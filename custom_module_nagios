@@ -8,15 +8,12 @@ Nagios understands the following exit codes:
 ############################################### nagios-client side configuration ##############################################################
 
 # Step 1:- Login to your nagios client machine as root user, and locate the commands diretory in my case cmd path is 
-# /usr/local/nagios/libexec/ in this path we will create our custom bash script to check services.
-
-#Step 2:- move the directory of commands.
+# /usr/local/nagios/libexec/ in this path we will create our custom bash script to check services, move the directory of commands.
 
 cd /usr/local/nagios/libexec/
-
 vim check_mysql.sh
 
--------------------------------------------------------------------------------------------------------------------
+###################################################################################################################
 
 #!/bin/bash
 
@@ -32,9 +29,9 @@ else
 exit 2
 fi
 
-------------------------------------------------------------------------------------------------------------------
+##################################################################################################################
+
 Save and exit
-------------------------------------------------------------------------------------------------------------------
 
 chmod +x check_mysql.sh
 
@@ -59,6 +56,8 @@ sudo systemctl status nrpe.service
 # you need to edit the your_host.cfg under  /usr/local/nagios/etc/servers/your_host.cfg
 # After that you need to add a service which is our custom mysql monitoring bash-script in the end of the your_host.cgf
 
+#########################################################################################################
+
 define service{
 
             use                     local-service
@@ -68,33 +67,17 @@ define service{
 
 }
 
+#########################################################################################################
+
 save and exit
 
-----------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-------------------------------------------------------------------------------------------------------------------------------
 # Verify the nagios server configuration. 
 
 sudo /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
 
-------------------------------------------------------------------------------------------------------------------------------
+# if all things is going good, After that you need to restart the nagios server service to get effect with new changes.
 
 sudo systemctl restart nagios
+sudo systemctl status nagios
 
-
-
-
-
-
-
-
-
-
+# Your Nagios server site configuration is completed...........
