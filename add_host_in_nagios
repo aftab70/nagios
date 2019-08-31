@@ -23,6 +23,8 @@ systemctl enable nrpe.service
 systemctl start nrpe.service
 systemctl status nrpe.service
 
+#####################################################################################################################
+
 # if all good going, After that you need to add Nagios server IP address in nrpe.cfg file,
 # Which file is located in /usr/local/nagios/etc/nrpe.cfg
 
