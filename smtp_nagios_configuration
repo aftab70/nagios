@@ -112,4 +112,12 @@ vim /usr/local/nagios/etc/objects/templates.cfg
 
 systemctl restart nagios
 
+#############################-------Service--Attempts--count--configuration-------##############################################################################################
+
+# How configure service attemp count - HARD state by default nagios apply 4 attemps to send a notification email to admin,
+# here we configre with 2 attemps check and getting warning , critical, ubnknow status nagios will send notification with in 2 attemps.
+
+
+
+
 
