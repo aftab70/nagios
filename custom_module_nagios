@@ -30,7 +30,48 @@ else
 exit 2
 fi
 
-----------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
+Save and exit
+------------------------------------------------------------------------------------------------------------------
+
+chmod +x check_mysql.sh
+
+# Step 3:- After that you need to configure create bash script with nrpe.cfg config file.
+
+vim /usr/local/nagios/etc/nrpe.cfg
+
+# Find the commands section in nrpe.cfg file and add the new like according the created senario.
+
+command[check_mysql]=/usr/local/nagios/libexec/check_mysql.sh
+
+# save and restart the nrpe service by follwing the commands.
+
+sudo systemctl restart nrpe.service
+sudo systemctl status nrpe.service
+
+# Now the client side configuration is completed.
+
+####################################################### Nagios Server side configuration ####################################################
+
+# Step 1:- Make sure you nagios client configured with nagios server and after that 
+# you need to edit the your_host.cfg under  /usr/local/nagios/etc/servers/your_host.cfg
+# After that you need to add a service which is our custom mysql monitoring bash-script in the end of the your_host.cgf
+
+define service{
+
+            use                     local-service
+            host_name               YOUR_HOST_NAME
+            service_description     MySql Status
+            check_command           check_nrpe!check_mysql
+
+}
+
+save and exit
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 
