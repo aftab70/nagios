@@ -19,7 +19,7 @@ make install-config
 make install-commandmode
 make install-webconf
 
-htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagios-admin
 a2enmod cgi
 systemctl restart apache2
 cd /tmp && wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
@@ -29,6 +29,7 @@ cd /tmp/nagios-plugins-2.2.1/
 make
 make install
 /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+sed -i 's/nagiosadmin/nagios-admin/g' cgi.cfg
 systemctl enable nagios
 apt -y install nagios-nrpe-plugin
 systemctl start nagios
