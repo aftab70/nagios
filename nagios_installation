@@ -37,6 +37,6 @@ apt -y install nagios-nrpe-plugin
 systemctl start nagios
 
 echo "nagios Core installation is successfull"
-echo "Open your browser using http://YOUR_IP/nagios "
+echo "Open your browser using http://YOUR_IP:8203/secure-panel/ "
 echo "Your username will be secure-nagios "
 echo "############## Author - Aftab Ali ######################"
