@@ -33,7 +33,8 @@ sed -i 's/nagiosadmin/secure-nagios/g' /usr/local/nagios/etc/cgi.cfg
 sed -i 's/80/8203/g' /etc/apache2/ports.conf
 cp -p /etc/apache2/sites-enabled/nagios.conf /etc/apache2/sites-available/
 rm -rf /etc/apache2/sites-enabled/nagios.conf
-a2ensite /etc/apache2/sites-available/nagios.conf
+cd /etc/apache2/sites-available/
+a2ensite nagios.conf
 sed -i 's@url_html_path=/nagios@url_html_path=/secure-panel@g' /usr/local/nagios/etc/cgi.cfg
 sed -i 's@Alias /aftab@Alias /secure-panel@g' /etc/apache2/sites-available/nagios.conf
 sed -i 's@/nagios/cgi-bin@/secure-panel/cgi-bin@g' /usr/local/nagios/share/config.inc.php
