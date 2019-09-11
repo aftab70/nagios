@@ -36,7 +36,7 @@ rm -rf /etc/apache2/sites-enabled/nagios.conf
 cd /etc/apache2/sites-available/
 a2ensite nagios.conf
 sed -i 's@url_html_path=/nagios@url_html_path=/secure-panel@g' /usr/local/nagios/etc/cgi.cfg
-sed -i 's@Alias /aftab@Alias /secure-panel@g' /etc/apache2/sites-available/nagios.conf
+sed -i 's@Alias /nagios@Alias /secure-panel@g' /etc/apache2/sites-available/nagios.conf
 sed -i 's@/nagios/cgi-bin@/secure-panel/cgi-bin@g' /usr/local/nagios/share/config.inc.php
 sed -i 's@/nagios/cgi-bin@/secure-panel/cgi-bin@g' /etc/apache2/sites-available/nagios.conf
 systemctl restart apache2
