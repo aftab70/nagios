@@ -4,7 +4,7 @@ set -e
 apt-get update 
 apt-get -y install build-essential apache2 php openssl perl make php-gd libgd-dev libapache2-mod-php libperl-dev libssl-dev daemon wget apache2-utils unzip
 
-useradd secure-nagios
+useradd -s /bin/false secure-nagios
 groupadd secure-nagcmd
 usermod -a -G secure-nagcmd secure-nagios
 usermod -a -G secure-nagcmd www-data
@@ -18,8 +18,7 @@ make install-init
 make install-config
 make install-commandmode
 make install-webconf
-
-htpasswd -c /usr/local/nagios/etc/htpasswd.users nagios-admin
+htpasswd -c /usr/local/nagios/etc/htpasswd.users secure-nagios
 a2enmod cgi
 systemctl restart apache2
 cd /tmp && wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
@@ -29,12 +28,14 @@ cd /tmp/nagios-plugins-2.2.1/
 make
 make install
 /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
-sed -i 's/nagiosadmin/nagios-admin/g' cgi.cfg
+sed -i 's/nagiosadmin/secure-nagios/g' /usr/local/nagios/etc/cgi.cfg
+sed -i 's/80/8203/g' /etc/apache2/ports.conf
+systemctl restart apache2
 systemctl enable nagios
 apt -y install nagios-nrpe-plugin
 systemctl start nagios
 
 echo "nagios Core installation is successfull"
 echo "Open your browser using http://YOUR_IP/nagios "
-echo "Your username will be secure-nagios-admin "
+echo "Your username will be secure-nagios "
 echo "############## Author - Aftab Ali ######################"
