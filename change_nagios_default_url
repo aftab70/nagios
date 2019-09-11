@@ -1,0 +1,25 @@
+ou will need to edit the cgi.cfg file for Nagios.
+
+vim /usr/local/nagios/etc/cgi.cfg
+
+Change url_html_path=/nagios to url_html_path=/
+
+Edit nagios.conf:
+
+Change ScriptAlias /nagios/cgi-bin "/usr/local/nagios/sbin" to ScriptAlias /cgi-bin "/usr/local/nagios/sbin"
+
+Comment out the line Alias /nagios "/usr/local/nagios/share" and then add below
+
+DocumentRoot /usr/local/nagios/share
+
+Add the following at top of the configuration:
+
+<VirtualHost *:80> ServerName status.example.com
+
+and add </VirtualHost> at the bottom.
+
+Edit your /usr/local/nagios/share/config.inc.php file:
+
+Change $cfg['cgi_base_url']='/nagios/cgi-bin'; to $cfg['cgi_base_url']='/cgi-bin';
+
+Restart Apache and Nagios
