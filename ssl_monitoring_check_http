@@ -1,0 +1,9 @@
+---------------------------------------- SSL monitoring using nagios core 4.4.3 -----------------------------------------------
+
+define command{
+        command_name check_ssl
+        command_line /usr/local/nagios/libexec/check_http -H example.com --ssl -p443 --sni -C 7,10
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------
