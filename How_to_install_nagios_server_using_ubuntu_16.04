@@ -51,9 +51,51 @@ make install-config
 make install-commandmode
 make install-webconf
 
-Step 5:- After this You need to create basic authentication using htaccess of nagios web user-interfaces bu using the commands.
-
+Step 5:- After this You need to create basic authentication using htaccess of nagios web user-interfaces bu using the commands, 
+         put your password to access the nagios web intgerface. 
+         
 htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+Step 5:- After this you need to install apache modules cgi by follwoing the commands and restart the apache2 services to get effect.
+
+a2enmod cgi && systemctl restart apache2
+
+Step 6:- After that, You need to download and compile the nagios plugin for monitoring the service by following the commands.
+
+cd /tmp
+wget https://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
+tar -zxvf /tmp/nagios-plugins-2.2.1.tar.gz
+cd /tmp/nagios-plugins-2.2.1/
+./configure --with-nagios-user=nagios --with-nagios-group=nagios
+make
+make install
+
+Step 7:- Now you need to check the nagios configuration by following the commands.
+
+/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+Steo 8:- After this, You need to enable to nagios service to auto start on system boot time and
+         You need to start the nagios services by using following commadns.
+         
+systemctl start nagios && systemctl enable nagios
+
+Step 8:- Now its time to open the browser and open the nagios web url like :-
+          
+         http://localhost/nagios/
+         
+You will be asked for user name password, You need to put the nagiosadmin for username and Passwowrd you have set for htaccess.
+
+Nagios by default monitor its self localhost, If you want to monitor remote machines, then you need to install 
+and configure NRPE plugin, nagios server site installation and configuration is completed.
+
+
+
+
+
+
+
+
+
 
 
 
