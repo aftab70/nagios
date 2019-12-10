@@ -88,30 +88,4 @@ You will be asked for user name password, You need to put the nagiosadmin for us
 Nagios by default monitor its self localhost, If you want to monitor remote machines, then you need to install 
 and configure NRPE plugin, nagios server site installation and configuration is completed.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         
-
-
-
-
-
-
-
-
-
-
-
-
+-------------------------------------------------- Author Aftab Ali----------------------------------------------------------
