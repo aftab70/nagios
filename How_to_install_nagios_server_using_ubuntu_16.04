@@ -1,0 +1,45 @@
+#################################    Installation of nagios-core 4.4.3 using Ubuntu 16.04  ####################################
+
+                                                 Introduction of nagios-core :-
+-------------------------------------------------------------------------------------------------------------------------------
+
+Nagios core is a open-source and free monitoring tool for monitoring the services that its support 
+Linux based and Windows based machines, Monitoring of network services like POP3, SMTP, HTTP, NNTP, ICMP, SNMP, FTP, SSH.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+                                             Installation steps are given below :- 
+Server and clinet details :-
+
+Hostname      - nagios
+IP Address    - 192.168.0.10
+OS            - ubuntu 16.04
+
+Hostname      - client
+IP Address    - 192.168.0.11
+OS            - ubuntu 16.04
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Server side installation and configration
+
+Step 1:- You need to install all dependencies for nagios-core in your ubuntu 16.04 machine by the following commands, before 
+         installation of we need update the repo first.
+         
+sudo apt-get update 
+sudo apt-get install build-essential openssl unzip apache2 php  perl make php-gd libgd-dev libapache2-mod-php libperl-dev libssl-dev daemon wget apache2-utils -y
+
+Step 2:- After that you need to create user and group to allow to executite to commands from web user-interfaces, We create nagios user and nagcmd group 
+         also need
+
+
+
+
+
+
+
+
+
+
+
+
