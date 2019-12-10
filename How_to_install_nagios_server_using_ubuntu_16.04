@@ -8,7 +8,6 @@ Linux based and Windows based machines, Monitoring of network services like POP3
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-                                             Installation steps are given below :- 
 Server and clinet details :-
 
 Hostname      - nagios
@@ -19,18 +18,49 @@ Hostname      - client
 IP Address    - 192.168.0.11
 OS            - ubuntu 16.04
 
--------------------------------------------------------------------------------------------------------------------------------
 
-Server side installation and configration
+-----------------------------------------  Server side installation and configration  ---------------------------------------
 
 Step 1:- You need to install all dependencies for nagios-core in your ubuntu 16.04 machine by the following commands, before 
          installation of we need update the repo first.
          
-sudo apt-get update 
-sudo apt-get install build-essential openssl unzip apache2 php  perl make php-gd libgd-dev libapache2-mod-php libperl-dev libssl-dev daemon wget apache2-utils -y
+sudo -i
+apt-get update 
+apt-get install build-essential openssl unzip apache2 php  perl make php-gd libgd-dev libapache2-mod-php libperl-dev libssl-dev daemon wget apache2-utils -y
 
 Step 2:- After that you need to create user and group to allow to executite to commands from web user-interfaces, We create nagios user and nagcmd group 
-         also need
+         also need to associate the nagios user with apache user to the part of the nagcmd group by the following commands.
+
+useradd nagios && groupadd nagcmd 
+usermod -a -G nagcmd nagios && usermod -a -G nagcmd www-data
+
+Step 3:- Now you need to download the nagios-core' tar files to compile by following the commands, 
+
+cd /tmp 
+wget https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.3.tar.gz
+tar -zxvf /tmp/nagios-4.4.3.tar.gz
+cd /tmp/nagios-4.4.3/
+
+Step 4:- After that you need to compile the nagios core by using the following the commands.
+
+./configure --with-nagios-group=nagios --with-command-group=nagcmd --with-httpd_conf=/etc/apache2/sites-enabled/
+make all
+make install
+make install-init
+make install-config
+make install-commandmode
+make install-webconf
+
+Step 5:- After this You need to create basic authentication using htaccess of nagios web user-interfaces bu using the commands.
+
+htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+
+
+
+
+
+
+         
 
 
 
